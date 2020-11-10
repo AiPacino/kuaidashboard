@@ -1101,7 +1101,11 @@
         },
         methods: {
             onCopy: function (e) {
-                let instance = Vue.$toast.open('复制成功');
+                Vue.$toast.success('保存成功.', {
+                    duration: 5000,
+                    // override the global option
+                    position: 'top'
+                })
             },
             onError: function (e) {
             },

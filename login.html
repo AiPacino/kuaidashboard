@@ -90,7 +90,7 @@
                     if (response.data.response.token) {
                         console.log("保存token")
                         localStorage.setItem('token', "Bearer " + response.data.response.token);
-                        window.location.href = '/dashboard.html';
+                        window.location.href = '/dashboard/dashboard.html';
                     }
                 }).catch(function (error) {
                 });

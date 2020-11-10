@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+    <meta name="author" content="ParkerThemes">
+    <link rel="shortcut icon" href="/dashboard/assets/img/fav.png"/>
+
+    <!-- Title -->
+    <title>登陆页面</title>
+
+    <!-- *************
+        ************ Common Css Files *************
+    ************ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.6/dist/css/bootstrap.min.css"/>
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="/dashboard/assets/css/main.css"/>
+
+</head>
+
+<body class="authentication">
+
+<!-- Container start -->
+<div class="container" id="main">
+
+    <div class="row justify-content-md-center">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
+            <div class="login-screen">
+                <div class="login-box">
+                    <a class="login-logo">
+                        <img src="/dashboard/assets/img/logo-dark.png" alt="销售统计"/>
+                    </a>
+                    <h5>欢迎回家,创业者.<br/>输入你的账户,踏上你的征程.</h5>
+                    <div class="form-group">
+                        <input type="text" v-model="email" class="form-control" placeholder="Email Address"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" v-model="password" class="form-control" placeholder="Password"/>
+                    </div>
+                    <div class="actions mb-4">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="remember_pwd">
+                            <label class="custom-control-label" for="remember_pwd">保持登陆</label>
+                        </div>
+                        <button type="button" @click="Login" class="btn btn-primary">登陆</button>
+                    </div>
+                    <div class="forgot-pwd">
+                        <a class="link" href="forgot-pwd.html">找回密码</a>
+                    </div>
+                    <hr>
+                    <div class="actions align-left">
+                        <span class="additional-link">新用户?</span>
+                        <a href="signup" class="btn btn-dark">创建一个新的账户</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Container end -->
+<script src="/dashboard/assets/js/common.js"></script>
+<script src="/dashboard/assets/js/base/vue.min.js"></script>
+<script src="/dashboard/assets/js/base/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#main',
+        delimiters: ['${', '}'],
+        data: {
+            'email': '',
+            'password': '',
+        },
+        computed: {},
+        watch: {},
+        created() {
+        },
+        methods: {
+            Login() {
+                axios.post(API_LOGIN, JSON.stringify({
+                    'email': this.email,
+                    'password': this.password,
+                })).then((response) => {
+                    console.log(response.data.response.token)
+                    if (response.data.response.token) {
+                        console.log("保存token")
+                        localStorage.setItem('token', "Bearer " + response.data.response.token);
+                        window.location.href = '/dashboard.html';
+                    }
+                }).catch(function (error) {
+                });
+            },
+            SignUp() {
+                axios.post(API_SIGN_UP, JSON.stringify({
+                    'email': this.email,
+                    'password': this.password,
+                    'username': this.username,
+                })).then((response) => {
+                    if (response.data.response.id) {
+                        window.location.href = '/login.html';
+                    }
+                }).catch(function (error) {
+                });
+            },
+        },
+        filters: {}
+    })
+</script>
+</body>
+</html>

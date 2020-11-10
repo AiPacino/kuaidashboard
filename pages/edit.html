@@ -1,0 +1,1608 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+    <meta name="author" content="ParkerThemes">
+    <link rel="shortcut icon" href="/assets/img/fav.png"/>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+
+    <!-- Title -->
+    <title>当前页面</title>
+
+    <!-- *************
+        ************ Common Css Files *************
+    ************ -->
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css">
+    <!-- Icomoon Font Icons css -->
+    <link rel="stylesheet" href="/assets/fonts/style.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- Bootstrap Select CSS -->
+    <link rel="stylesheet" href="/assets/vendor/bs-select/bs-select.css"/>
+    <!-- *************
+        ************ Vendor Css Files *************
+    ************ -->
+    <!-- DateRange css -->
+    <link rel="stylesheet" href="/assets/vendor/daterange/daterange.css"/>
+
+    <!-- Notify -->
+    <link rel="stylesheet" href="/assets/vendor/notify/notify-flat.css"/>
+
+
+</head>
+<body>
+
+<!-- Loading starts -->
+<div id="loading-wrapper">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">载入中...</span>
+    </div>
+</div>
+<!-- Loading ends -->
+
+<!-- Page wrapper start -->
+<div class="page-wrapper" id="main">
+    <vue-snotify></vue-snotify>
+
+    <!-- Sidebar wrapper start -->
+    <nav id="sidebar" class="sidebar-wrapper">
+
+        <!-- Sidebar brand start  -->
+        <div class="sidebar-brand">
+            <a href="index.html" class="logo">
+                <img src="/assets/img/logo.png" alt="销售统计"/>
+            </a>
+        </div>
+        <!-- Sidebar brand end  -->
+
+        <!-- Sidebar content start -->
+        <div class="sidebar-content">
+
+            <!-- sidebar menu start -->
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="header-menu">常规</li>
+                    <li>
+                        <a href="/dashboard.html">
+                            <i class="icon-eye1"></i>
+                            <span class="menu-text">销售统计</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages.html">
+                            <i class="icon-local_mall"></i>
+                            <span class="menu-text">全部收款</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/account.html">
+                            <i class="icon-settings1"></i>
+                            <span class="menu-text">账户设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidebar menu end -->
+
+        </div>
+        <!-- Sidebar content end -->
+
+    </nav>
+    <!-- Sidebar wrapper end -->
+
+    <!-- Page content start  -->
+    <div class="page-content">
+
+        <!-- Header start -->
+        <header class="header">
+            <div class="toggle-btns">
+                <a id="toggle-sidebar">
+                    <i class="icon-list"></i>
+                </a>
+                <a id="pin-sidebar">
+                    <i class="icon-list"></i>
+                </a>
+            </div>
+            <div class="header-items">
+                <!-- Header actions start -->
+                <ul class="header-actions">
+                    <li class="dropdown">
+                        <a href="index.html#" id="userSettings" class="user-settings" data-toggle="dropdown"
+                           aria-haspopup="true">
+                            <span class="user-name" id="username-bar">${username}</span>
+                            <span class="avatar">
+										<img src="/assets/img/user24.png" alt="avatar">
+										<span class="status busy"></span>
+									</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
+                            <div class="header-profile-actions">
+                                <div class="header-user-profile">
+                                    <div class="header-user">
+                                        <img src="/assets/img/user24.png" alt="Admin Template">
+                                    </div>
+                                    <h5 class="user-name">${username}</h5>
+                                </div>
+                                <a id="account-settings" href="/account"><i class="icon-settings1"></i>账户设置</a>
+                                <a type="button" onclick="SignOut()"><i class="icon-log-out1"></i>退出登录</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Header actions end -->
+            </div>
+        </header>
+        <!-- Header end -->
+
+        <!-- Page header start -->
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" href="/">主页</li>
+                <li class="breadcrumb-item active">详情</li>
+            </ol>
+
+            <ul class="app-actions">
+                <li>
+                    <a href="/dashboard" id="reportrange">
+                        <span class="range-text"></span>
+                        <i class="icon-chevron-down"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>        <!-- Page header end -->
+
+
+        <!-- Main container start -->
+        <div class="main-container">
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <!-- Row start -->
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="blog">
+                                <div class="blog-body">
+                                    <h2 class="blog-title" id="page-title">${title}</h2>
+                                    <h6 class="blog-date">
+                                        <span class="category">${price}</span>
+                                        <span class="divider">/</span>
+                                        <span class="date">${ created_at| human}</span>
+                                    </h6>
+                                    <div class="blog-description">
+                                        <p>${description}</p>
+                                    </div>
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="custom-actions-btns float-left">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#scrollingModalLong">
+                                                    <i class="icon-printer"></i>使用教程
+                                                </button>
+                                                <a href="invoice.html#" class="btn btn-dark">
+                                                    <i class="icon-printer"></i>链接预览
+                                                </a>
+                                                <a href="invoice.html#" class="btn btn-dark">
+                                                    <i class="icon-printer"></i>删除宝贝
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-tabs-container">
+                                    <ul class="nav nav-tabs" id="myTab3" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#overview"
+                                               role="tab"
+                                               aria-controls="overview" aria-selected="true"><i class="icon-home2"></i>营销数据</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#edit"
+                                               role="tab"
+                                               aria-controls="edit" aria-selected="false">
+                                                <i class="icon-feather"></i>编辑详情</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#fields"
+                                               role="tab"
+                                               aria-controls="fields" aria-selected="false"><i
+                                                        class="icon-phone-call"></i>表单收集</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#variants"
+                                               role="tab"
+                                               aria-controls="variants" aria-selected="false"><i
+                                                        class="icon-file-text"></i>宝贝属性</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab6" data-toggle="tab" href="#sales"
+                                               role="tab"
+                                               aria-controls="sales" aria-selected="false"><i
+                                                        class="icon-truck"></i>所有订单</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab7" data-toggle="tab" href="#more-setting"
+                                               role="tab"
+                                               aria-controls="more-setting" aria-selected="false"><i
+                                                        class="icon-settings"></i>更多设置</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#widgets"
+                                               role="tab"
+                                               aria-controls="widgets" aria-selected="false"><i
+                                                        class="icon-settings"></i>使用教程</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent3">
+                                        <div class="tab-pane fade active show" id="overview" role="tabpanel"
+                                             aria-labelledby="home-tab3">
+                                            <!-- Row start -->
+                                            <div class="row gutters">
+                                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="info-stats4">
+                                                        <div class="info-icon">
+                                                            <i class="icon-eye1"></i>
+                                                        </div>
+                                                        <div class="sale-num">
+                                                            <h3 id="visitors_total">${visitors_total}</h3>
+                                                            <p>总访客数</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="info-stats4">
+                                                        <div class="info-icon">
+                                                            <i class="icon-shopping-cart1"></i>
+                                                        </div>
+                                                        <div class="sale-num">
+                                                            <h3 id="orders_total">${orders_total}</h3>
+                                                            <p>总订单数</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="info-stats4">
+                                                        <div class="info-icon">
+                                                            <i class="icon-shopping-bag1"></i>
+                                                        </div>
+                                                        <div class="sale-num">
+                                                            <h3 id="deals_total">${deals_total}</h3>
+                                                            <p>总付款数</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="info-stats4">
+                                                        <div class="info-icon">
+                                                            <i class="icon-activity"></i>
+                                                        </div>
+                                                        <div class="sale-num">
+                                                            <h3 id="income_total">${income_total}</h3>
+                                                            <p>总成交额</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Row end -->
+
+                                            <!-- Row start -->
+                                            <div class="row gutters">
+                                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-title">总访客数</div>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div id="visitors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-title">总成交量</div>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div id="deals"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-title">总成交额</div>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div id="income"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Row end -->
+                                        </div>
+                                        <div class="tab-pane fade" id="edit" role="tabpanel"
+                                             aria-labelledby="edit">
+                                            <div class="card m-0">
+                                                <div class="card-header">
+                                                    <div class="card-title">基础信息</div>
+                                                    <ul class="text-muted custom">
+                                                        <li>这里设置最基本的信息</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="card-body">
+
+                                                    <!-- Row start -->
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inputName"
+                                                                       class="col-form-label">标题</label>
+                                                                <input type="text" class="form-control"
+                                                                       v-model="title">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputEmail"
+                                                                       class="col-form-label">描述(可以不填写)</label>
+                                                                <input type="text" class="form-control"
+                                                                       v-model="description">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputMobNumber" class="col-form-label">提示信息(可以不填写)</label>
+                                                                <input type="text" class="form-control"
+                                                                       v-model="content">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inputMobNumber"
+                                                                       class="col-form-label">售价</label>
+                                                                <input type="text" class="form-control text-right"
+                                                                       v-model="price">
+                                                            </div>
+                                                        </div>
+                                                        <!-- Row end -->
+
+                                                        <!-- Row start -->
+
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <button type="submit" v-on:click="updatePagePost"
+                                                                    class="btn btn-primary float-left">提交更改
+                                                            </button>
+                                                        </div>
+                                                        <!-- Row end -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="fields" role="tabpanel"
+                                             aria-labelledby="contact-tab3">
+                                            <div class="card m-0">
+                                                <div class="card-header">
+                                                    <div class="card-title">表单收集</div>
+                                                    <ul class="text-muted custom">
+                                                        <li>* 使用“表单收集”可以使用来收集顾客的信息，例如姓名，邮寄地址，电话等。
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div v-for="(field, index) in fields">
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inputName">表单名</label>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="例如（手机，住址，姓名，电话）"
+                                                                       v-model="field.name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <label>提示信息（可为空）</label>
+                                                                <input class="form-control" placeholder="请输入用户的引导信息"
+                                                                       v-model="field.placeholder">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                            <div class="form-group">
+                                                                <label>数据类型</label>
+                                                                <select class="form-control" v-model="field.type">
+                                                                    <option value="text">文本类型</option>
+                                                                    <option value="name">顾客姓名</option>
+                                                                    <option value="email">客户电子邮件地址</option>
+                                                                    <option value="phone">客户电话</option>
+                                                                    <option value="shipping-address-line1">送货地址</option>
+                                                                    <option value="shipping-address-line2">送货地址第二行
+                                                                    </option>
+                                                                    <option value="shipping-address-city">航运地址</option>
+                                                                    <option value="shipping-address-country">送货地址国家
+                                                                    </option>
+                                                                    <option value="shipping-address-postal_code">
+                                                                        邮寄地址邮政编码
+                                                                    </option>
+                                                                    <option value="shipping-address-state">运输地址状态
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inputReadOnly">填写要求</label>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                           v-model="field.required">
+                                                                    <label class="form-check-label">
+                                                                        必须填写
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inputReadOnly">删除这个表单选项</label>
+                                                                <div class="form-group">
+                                                                    <button type="button"
+                                                                            class="btn btn-danger add-danger-message"
+                                                                            type="submit" @click="DeleteField(index)">删除
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr style="margin-top: 0">
+                                                </div>
+                                                <hr>
+                                                <button class="btn btn-primary" type="submit" @click="addNewField">
+                                                    新的表单选项
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" @click="updatePageFields">
+                                                    保存表单
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="variants" role="tabpanel"
+                                             aria-labelledby="contact-tab3">
+                                            <div class="card m-0">
+                                                <div class="card-header">
+                                                    <div class="card-title">宝贝属性</div>
+                                                    <ul class="text-muted custom">
+                                                        <li>* 使用“宝贝属性”可以使客户购买产品的不同版本，例如不同的尺寸和颜色。您还可以使用它们来让客户购买升级或其他服务。
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-body" id="variant-options">
+                                                <div v-for="(variant, v_index) in variants">
+                                                    <div class="form-row">
+                                                        <div class="col-md-4 mb-3">
+                                                            <label for="validationDefault01">属性名</label>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="例如（颜色，容量，大小）"
+                                                                   v-model="variant.name">
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label for="validationDefault02">商家编码</label>
+                                                            <input type="text" class="form-control" placeholder="可不填"
+                                                                   v-model="variant.sku">
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label for="validationDefaultUsername">商家条形码</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="可不填" v-model="variant.slug">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gutters" v-for="(option, index) in variant.options">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">-</span>
+                                                                    </div>
+                                                                    <input type="text" v-model="option.value"
+                                                                           class="form-control"
+                                                                           placeholder="属性值（例如，500毫升，小号，红色）">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="浮动价格"
+                                                                           v-model="option.add_price">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"
+                                                                              id="basic-addon2">元</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="商家库存"
+                                                                           v-model="option.quantity">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                                            <div class="form-group">
+                                                                <button class="btn btn-danger" type="submit"
+                                                                        @click="deleteVariantOption(index)">
+                                                                    删除选项
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                            <div class="form-group">
+                                                                <button class="btn btn-success" type="submit"
+                                                                        @click="addNewVariantOption(v_index)">
+                                                                    新建选项
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                            <div class="form-group">
+                                                                <button class="btn btn-danger" type="submit"
+                                                                        @click="deleteVariant(v_index)">
+                                                                    删除此属性
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr style="margin-top: 0">
+                                                </div>
+                                                <button class="btn btn-primary" type="submit" @click="addNewVariant">
+                                                    新的属性
+                                                </button>
+                                                <button class="btn btn-primary" type="submit"
+                                                        @click="updatePageVariants">保存属性
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="sales" role="tabpanel"
+                                             aria-labelledby="contact-tab3">
+                                            <!-- Row start -->
+                                            <div class="table-container">
+                                                <!--*************************
+                                                    *************************
+                                                    *************************
+                                                    Basic table start
+                                                *************************
+                                                *************************
+                                                *************************-->
+                                                <div class="table-responsive">
+                                                    <table class="table m-0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>订单id</th>
+                                                            <th>表单信息</th>
+                                                            <th>金额</th>
+                                                            <th>下单时间</th>
+                                                            <th>订单状态</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr v-for="item in posts">
+                                                            <td>${item.id}</td>
+                                                            <td>${item.content}</td>
+                                                            <td>${item.price}元</td>
+                                                            <td>${item.created_at | human}</td>
+                                                            <td><span class="badge badge-info">${item.status}</span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!--*************************
+                                                    *************************
+                                                    *************************
+                                                    Basic table end
+                                                *************************
+                                                *************************
+                                                *************************-->
+                                            </div>
+                                            <!-- Row end -->
+                                            <div class="card-footer">
+                                                <nav aria-label="navigation">
+                                                    <ul class="pagination justify-content-center info">
+                                                        <li class="page-item disabled" v-if="page != 1"
+                                                            @click="page--">
+                                                            <a class="page-link" href="#"><i
+                                                                        class="icon-chevron-left1"></i>前一页</a></li>
+
+                                                        </li>
+                                                        <li class="page-item active"
+                                                            v-for="pageNumber in pages.slice(page-1, page+5)"
+                                                            v-if="page == pageNumber"
+                                                            @click="page = pageNumber"><a class="page-link" href="#">${pageNumber}</a>
+                                                        </li>
+                                                        <li class="page-item"
+                                                            v-for="pageNumber in pages.slice(page-1, page+5)"
+                                                            v-if="page != pageNumber"
+                                                            @click="page = pageNumber"><a class="page-link" href="#">${pageNumber}</a>
+                                                        </li>
+                                                        <li class="page-item" @click="page++"
+                                                            v-if="page < pages.length">
+                                                            <a class="page-link" href="#">下一页<i
+                                                                        class="icon-chevron-right1"></i></a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="more-setting" role="tabpanel"
+                                             aria-labelledby="contact-tab3">
+                                            <div class="card-body">
+                                                <div class="card-title">产品数量</div>
+
+                                                <div class="form-inline">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2"
+                                                           placeholder="库存数量" v-model="settings.stock">
+                                                    <div class="form-check mb-2 mr-sm-2">
+                                                        <input class="form-check-input"
+                                                               v-model="settings.has_unlimited_stock" type="checkbox">
+                                                        <label class="form-check-label" for="inlineFormCheck">
+                                                            无限库存
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+                                                <div class="form-inline">
+                                                    <div class="form-check mb-2 mr-sm-2">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               v-model="settings.has_slug">
+                                                        <label class="form-check-label" for="inlineFormCheck">
+                                                            客户付款后，页面重定向到
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control mb-2 mr-sm-2"
+                                                       placeholder="请输入要重定向页面的地址" v-model="settings.slug">
+                                                <hr>
+                                                <div class="form-inline">
+                                                    <div class="form-check mb-2 mr-sm-2">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               v-model="settings.has_confirmation_checkout_message">
+                                                        <label class="form-check-label" for="inlineFormCheck">
+                                                            客户付款成功后，发送以下内容给客户（内容如下）
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <textarea class="form-control" rows="3"
+                                                          v-model="settings.confirmation_checkout_message"></textarea>
+
+                                                <hr>
+                                                <div class="form-inline">
+                                                    <div class="form-check mb-2 mr-sm-2">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               v-model="settings.notify">
+                                                        <label class="form-check-label" for="inlineFormCheck">
+                                                            客户付款成功后，发邮件提醒我（内容如下）
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-inline">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2"
+                                                           placeholder="请输入您的邮箱地址" v-model="settings.notify_email">
+                                                </div>
+                                                <textarea class="form-control" rows="3"
+                                                          v-model="settings.notify_content"></textarea>
+
+                                                <hr>
+                                                <div class="form-inline">
+                                                    <button type="submit" v-on:click="updatePageSettings"
+                                                            class="btn btn-primary mb-2">提交更改
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="widgets" role="tabpanel"
+                                             aria-labelledby="">
+                                            <div class="card-body">
+                                                <div class="main-container">
+                                                    <!-- Row start -->
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                            <div class="blog">
+                                                                <img class="blog-img" src="/assets/img/img5.jpg"
+                                                                     alt="Card image cap">
+                                                                <div class="blog-body">
+                                                                    <h6 class="blog-title">Horizontal Admin</h6>
+                                                                    <div class="blog-description">
+                                                                        <small>
+                                                                            <textarea
+                                                                                    v-clipboard:copy="widgets.checkout_link"
+                                                                                    v-clipboard:success="onCopy"
+                                                                                    v-clipboard:error="onError"
+                                                                                    v-model="widgets.checkout_link">${ widgets.checkout_link }</textarea>
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="blog-actions">
+                                                                        <a href="javascript:void(0)"
+                                                                           class="btn btn-primary btn-sm">复制代码</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Row end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row end -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="scrollingModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="scrollingModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scrollingModalLongTitle">使用下面三种方式让您的客户付款给您</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="float-right">
+                                                <h3>1. 网页链接</h3>
+                                                <p>最方便的收款方式就是您把下面这个链接放在您的网站,社交媒体,邮件或者聊天信息中.</p>
+                                                <ul class="list-group">
+                                                    <li>
+                                                        <a id="checkout-link-way-one-link" :href="checkout_link">${checkout_link}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </button>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="notify-notifications clearfix">
+                                                <div id="notes"></div>
+                                                <button type="button" class="btn btn-success add-success-noti copy"
+                                                        id="checkout-link-way-one-link-button"
+                                                        data-clipboard-text="checkout_link">点击复制链接
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="float-right">
+                                                <h3>2. 网页链接</h3>
+                                                <p>最方便的收款方式就是您把下面这个链接放在您的网站,社交媒体,邮件或者聊天信息中.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </button>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="notify-notifications clearfix">
+                                                <div id="notes"></div>
+                                                <button type="button" class="btn btn-success add-success-noti copy"
+                                                        data-clipboard-text="hi">点击复制链接
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="float-right">
+                                                <h3>1. 网页链接</h3>
+                                                <p>最方便的收款方式就是您把下面这个链接放在您的网站,社交媒体,邮件或者聊天信息中.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </button>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <button class="btn btn-primary copy" data-clipboard-text="hello">
+                                                点击复制链接
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+    </div>
+    <!-- Main container end -->
+
+</div>
+<!-- Page content end -->
+
+<script src="/assets/vendor/apex/apexcharts.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015"></script>
+<!--**************************
+    **************************
+        **************************
+                    Required JavaScript Files
+        **************************
+    **************************
+**************************-->
+<!-- Required jQuery first, then Bootstrap Bundle JS -->
+<script src="/assets/js/base/jquery.min.js"></script>
+<script src="/assets/js/base/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/base/moment.js"></script>
+
+
+<!-- *************
+    ************ Vendor Js Files *************
+************* -->
+<!-- Slimscroll JS -->
+<script src="/assets/vendor/slimscroll/slimscroll.min.js"></script>
+<script src="/assets/vendor/slimscroll/custom-scrollbar.js"></script>
+
+<!-- Daterange -->
+<script src="/assets/vendor/daterange/daterange.js"></script>
+<script src="/assets/vendor/daterange/custom-daterange.js"></script>
+
+<!-- Bootstrap Select JS -->
+<script src="/assets/vendor/bs-select/bs-select.min.js"></script>
+<!-- Polyfill JS -->
+<script src="/assets/vendor/polyfill/polyfill.min.js"></script>
+
+<!-- Notify js -->
+<script src="/assets/js/base/jquery.easing.1.3.js"></script>
+<script src="/assets/vendor/notify/notify.js"></script>
+<script src="/assets/vendor/notify/notify-custom.js"></script>
+<script>
+    $.fn.modal.Constructor.prototype._enforceFocus = function () {
+    };
+</script>
+<!-- Main JS -->
+<script src="/assets/js/utils/tools.js"></script>
+<script src="/assets/js/utils/URI.js"></script>
+<script src="/assets/js/utils/url.js"></script>
+<script src="/assets/js/utils/vue-clipboard.min.js"></script>
+<script src="/assets/js/utils/ajax.js"></script>
+<script src="/assets/js/utils/att.js"></script>
+<script src="/assets/js/views/login.js"></script>
+<script src="/assets/js/views/checkout/order.js"></script>
+<script src="/assets/js/views/pages/new.js"></script>
+<script src="/assets/js/views/user.js"></script>
+<script src="/assets/js/router.js"></script>
+<script src="/assets/js/views/pages/variant.js"></script>
+<script src="/assets/js/init.js"></script>
+<script src="/assets/js/common.js"></script>
+<script src="/assets/js/utils/currency.js"></script>
+<script src="/assets/js/base/human.js"></script>
+<script src="/assets/js/base/vue.min.js"></script>
+<script src="/assets/js/base/axios.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue-toast-notification"></script>
+<link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css" rel="stylesheet">
+
+<script>
+    // Jquery Dependency
+
+    $("input[data-type='currency']").on({
+        keyup: function () {
+            formatCurrency($(this));
+        },
+        blur: function () {
+            formatCurrency($(this), "blur");
+        }
+    });
+
+
+    function formatNumber(n) {
+        // format number 1000000 to 1,234,567
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+
+    function formatCurrency(input, blur) {
+        // appends $ to value, validates decimal side
+        // and puts cursor back in right position.
+
+        // get input value
+        var input_val = input.val();
+
+        // don't validate empty input
+        if (input_val === "") {
+            return;
+        }
+
+        // original length
+        var original_len = input_val.length;
+
+        // initial caret position
+        var caret_pos = input.prop("selectionStart");
+
+        // check for decimal
+        if (input_val.indexOf(".") >= 0) {
+
+            // get position of first decimal
+            // this prevents multiple decimals from
+            // being entered
+            var decimal_pos = input_val.indexOf(".");
+
+            // split number by decimal point
+            var left_side = input_val.substring(0, decimal_pos);
+            var right_side = input_val.substring(decimal_pos);
+
+            // add commas to left side of number
+            left_side = formatNumber(left_side);
+
+            // validate right side
+            right_side = formatNumber(right_side);
+
+            // On blur make sure 2 numbers after decimal
+            if (blur === "blur") {
+                right_side += "00";
+            }
+
+            // Limit decimal to only 2 digits
+            right_side = right_side.substring(0, 2);
+
+            // join number by .
+            input_val = "" + left_side + "." + right_side;
+
+        } else {
+            // no decimal entered
+            // add commas to number
+            // remove all non-digits
+            input_val = formatNumber(input_val);
+            input_val = "" + input_val;
+
+            // final formatting
+            if (blur === "blur") {
+                input_val += ".00";
+            }
+        }
+
+        // send updated string to input
+        input.val(input_val);
+
+        // put caret back in the right position
+        var updated_len = input_val.length;
+        caret_pos = updated_len - original_len + caret_pos;
+        input[0].setSelectionRange(caret_pos, caret_pos);
+    }
+</script>
+<script>
+
+    let where = window.location.href.toLowerCase();
+    let id = GetPageIdFromUrl(/pages\/edit.html\?id=([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})/i, where);
+
+    const VueClipboard = window['VueClipboard'];
+    Vue.use(VueClipboard);
+
+    Vue.use(VueToast, {
+        // One of the options
+        position: 'bottom'
+    });
+
+
+    new Vue({
+        el: '#main',
+        delimiters: ['${', '}'],
+        data: {
+            widgets: {
+                qr: {
+                    image: "https://dev.6kuai6.com/widget/qr/" + id
+                },
+                checkout_link: "<script async src=\"https://widgets.6kuai6.com/widgets/js/checkout/" + id + "/loader.js\"><\/script>",
+            },
+            settings: {
+                notify: null,
+                notify_email: null,
+                notify_content: null,
+                confirmation_checkout_message: null,
+                has_confirmation_checkout_message: null,
+                stock: null,
+                has_stock: null,
+                has_unlimited_stock: null,
+                has_slug: null,
+                slug: null,
+            },
+            variants: [{
+                name: '',
+                slug: '',
+                sku: '',
+                options: [{
+                    value: '',
+                    add_price: '',
+                    quantity: '',
+                }]
+            }],
+            fields: [{
+                name: '',
+                placeholder: '',
+                type: 'text',
+                required: false,
+            }],
+            username: "",
+            pages: [],
+            record: [],
+            posts: [],
+            formData: {},
+            results: false,
+            brand: 'Honda',
+            values: {},
+            title: "数据载入中",
+            price: "",
+            description: "",
+            content: "",
+            page: 1,
+            perPage: 8,
+            checkout_link: where.replace("/edit", "").replace("/pages/", "/checkout/"),
+            created_at: "",
+            visitors_total: 0,
+            orders_total: 0,
+            deals_total: 0,
+            income_total: 0,
+            url: {
+                apiHost: ApiHost + '/api/v1/analytics/pages/' + id,
+                OrderApiHost: ApiHost + '/api/v1/posts/' + id + '/orders',
+                EditApiHost: ApiHost + '/api/v1/posts/' + id,
+            }
+        },
+        watch: {
+            posts() {
+                this.setPages();
+            },
+            page() {
+                this.getOrders();
+            }
+        },
+        created: function () {
+            this.getAnalytics();
+            this.getOrders();
+        },
+        methods: {
+            onCopy: function (e) {
+                let instance = Vue.$toast.open('复制成功');
+            },
+            onError: function (e) {
+            },
+            setPages() {
+                let numberOfPages = Math.ceil(this.resp.length / this.perPage);
+                numberOfPages = this.resp.total_page;
+                for (let index = 1; index <= numberOfPages; index++) {
+                    this.pages.push(index);
+                }
+            },
+            updatePageSettings() {
+                axios.put(this.url.EditApiHost, JSON.stringify({
+                        'post': {
+                            "price": this.price,
+                            "title": this.title,
+                            "settings": JSON.stringify(this.settings)
+                        },
+                        'type': "settings",
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    this.settings = JSON.parse(response.data.response.settings)
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            updatePagePost() {
+                axios.put(this.url.EditApiHost, JSON.stringify({
+                        'post': {
+                            'title': this.title,
+                            'price': this.price,
+                            'description': this.description,
+                            'content': this.content,
+                        },
+                        'type': "base",
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    this.title = response.data.response.title;
+                    this.price = response.data.response.price;
+                    this.description = response.data.response.description;
+                    this.content = response.data.response.content;
+
+                    Vue.$toast.success('保存成功.', {
+                        duration: 5000,
+                        // override the global option
+                        position: 'top'
+                    })
+                }).catch(function (error) {
+                    Vue.$toast.error('保存失败.', {
+                        duration: 5000,
+                        // override the global option
+                        position: 'top'
+                    })
+                    console.log(error);
+                });
+            },
+            updatePageVariants() {
+                axios.put(this.url.EditApiHost, JSON.stringify({
+                        'post': {
+                            "price": this.price,
+                            "title": this.title,
+                            "variants": JSON.stringify(this.variants)
+                        },
+                        'type': "variants",
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    this.variants = JSON.parse(response.data.response.variants)
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            updatePageFields() {
+                axios.put(this.url.EditApiHost, JSON.stringify({
+                        'post': {
+                            "price": this.price,
+                            "title": this.title,
+                            "fields": JSON.stringify(this.fields)
+                        },
+                        'type': "fields",
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    this.fields = JSON.parse(response.data.response.fields)
+                    Vue.$toast.success('保存成功.', {
+                        duration: 5000,
+                        // override the global option
+                        position: 'top'
+                    })
+                }).catch(function (error) {
+                    Vue.$toast.error('保存失败.', {
+                        duration: 5000,
+                        // override the global option
+                        position: 'top'
+                    })
+                    console.log(error);
+                });
+            },
+            paginate(posts) {
+                let page = this.page;
+                let perPage = this.perPage;
+                let from = (page * perPage) - perPage;
+                let to = (page * perPage);
+                return posts.slice(from, to);
+            },
+            getAnalytics() {
+                axios.post(this.url.apiHost, JSON.stringify({
+                        'start': start,
+                        'end': end,
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    console.log("----");
+                    this.visitors_total = response.data.response.statistics.visitors
+                    this.orders_total = response.data.response.statistics.orders
+                    this.deals_total = response.data.response.statistics.deals
+                    this.income_total = parseInt(response.data.response.statistics.income)
+
+                    this.title = response.data.response.post.title;
+                    this.price = response.data.response.post.price;
+                    this.description = response.data.response.post.description;
+                    this.content = response.data.response.post.content;
+                    this.created_at = response.data.response.post.created_at;
+
+                    try {
+                        this.fields = JSON.parse(response.data.response.post.fields)
+                    } catch (err) {
+                    }
+
+                    try {
+                        this.settings = JSON.parse(response.data.response.post.settings)
+                    } catch (err) {
+                    }
+
+                    try {
+                        this.variants = JSON.parse(response.data.response.post.variants)
+                    } catch (err) {
+                    }
+
+
+                    if (response.data.response.statistics.daily_income.key != null) {
+                        let IncomeChartOptions = {
+                            chart: {
+                                id: 'income',
+                                height: 275,
+                                type: 'area',
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            dataLabels: {
+                                enabled: true
+                            },
+                            stroke: {
+                                curve: 'smooth',
+                                width: 4
+                            },
+                            series: [],
+                            grid: {
+                                row: {
+                                    colors: ['#ffffff'], // takes an array which will be repeated on columns
+                                    opacity: 0.5
+                                },
+                            },
+                            xaxis: {},
+                            colors: ['#225de4', '#888888'],
+                            markers: {
+                                size: 5,
+                                opacity: 0.2,
+                                colors: ['#225de4', '#888888'],
+                                strokeColor: "#fff",
+                                strokeWidth: 3,
+                                hover: {
+                                    size: 7,
+                                }
+                            },
+                            tooltip: {
+                                x: {
+                                    format: 'dd/MM/yy'
+                                },
+                            },
+                            noData: {
+                                text: "正在载入数据中",
+                                align: 'center',
+                                verticalAlign: 'middle',
+                                offsetX: 0,
+                                offsetY: 0
+                            }
+                        }
+
+                        let IncomeChart = new ApexCharts(
+                            document.querySelector("#income"),
+                            IncomeChartOptions,
+                        );
+                        IncomeChart.render();
+
+                        let xaxis = {};
+                        let series = [];
+
+                        xaxis = {
+                            type: 'datetime',
+                            allowDecimals: false,
+                            categories: response.data.response.statistics.daily_income.key,
+                            labels: {
+                                formatter: function (val) {
+                                    return moment(val).format("M月DD日");
+                                }
+                            }
+                        };
+
+                        series = {
+                            name: "人民币",
+                            data: response.data.response.statistics.daily_income.value.map(x => parseInt(x)),
+                            labels: {
+                                formatter: function (val) {
+                                    return val + "sf";
+                                }
+                            }
+                        };
+
+                        ApexCharts.exec('income', "updateOptions", {
+                            xaxis: xaxis,
+                        });
+
+                        ApexCharts.exec('income', "updateSeries", [
+                            series
+                        ]);
+                    }
+
+                    if (response.data.response.statistics.daily_deals.key != null) {
+
+                        let DealsChartOptions = {
+                            chart: {
+                                id: 'deals',
+                                height: 275,
+                                type: 'area',
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            dataLabels: {
+                                enabled: true
+                            },
+                            stroke: {
+                                curve: 'smooth',
+                                width: 4
+                            },
+                            series: [],
+                            grid: {
+                                row: {
+                                    colors: ['#ffffff'], // takes an array which will be repeated on columns
+                                    opacity: 0.5
+                                },
+                            },
+                            xaxis: {},
+                            colors: ['#225de4', '#888888'],
+                            markers: {
+                                size: 5,
+                                opacity: 0.2,
+                                colors: ['#225de4', '#888888'],
+                                strokeColor: "#fff",
+                                strokeWidth: 3,
+                                hover: {
+                                    size: 7,
+                                }
+                            },
+                            tooltip: {
+                                x: {
+                                    format: 'dd/MM/yy'
+                                },
+                            },
+                            noData: {
+                                text: "没有数据",
+                                align: 'center',
+                                verticalAlign: 'middle',
+                                offsetX: 0,
+                                offsetY: 0
+                            }
+                        }
+
+                        let DealsChart = new ApexCharts(
+                            document.querySelector("#deals"),
+                            DealsChartOptions,
+                        );
+                        DealsChart.render();
+
+                        let xaxis = {};
+                        let series = [];
+                        xaxis = {
+                            type: 'datetime',
+                            categories: response.data.response.statistics.daily_deals.key,
+                            labels: {
+                                formatter: function (val) {
+                                    return moment(val).format("M月DD日");
+                                }
+                            }
+                        };
+
+                        series = {
+                            name: "人民币:",
+                            data: response.data.response.statistics.daily_deals.value,
+                            labels: {
+                                formatter: function (val) {
+                                    return val;
+                                }
+                            }
+                        };
+
+                        ApexCharts.exec('deals', "updateOptions", {
+                            xaxis: xaxis
+                        });
+
+                        ApexCharts.exec('deals', "updateSeries", [
+                            series
+                        ]);
+                    }
+
+                    if (response.data.response.statistics.daily_visitor.key != null) {
+                        let VisitorChartOptions = {
+                            chart: {
+                                id: 'visitors',
+                                height: 275,
+                                type: 'area',
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            dataLabels: {
+                                enabled: true
+                            },
+                            stroke: {
+                                curve: 'smooth',
+                                width: 4
+                            },
+                            series: [],
+                            grid: {
+                                row: {
+                                    colors: ['#ffffff'], // takes an array which will be repeated on columns
+                                    opacity: 0.5
+                                },
+                            },
+                            xaxis: {},
+                            colors: ['#225de4', '#888888'],
+                            markers: {
+                                size: 5,
+                                opacity: 0.2,
+                                colors: ['#225de4', '#888888'],
+                                strokeColor: "#fff",
+                                strokeWidth: 3,
+                                hover: {
+                                    size: 7,
+                                }
+                            },
+                            tooltip: {
+                                x: {
+                                    format: 'dd/MM/yy'
+                                },
+                            },
+                            noData: {
+                                text: "正在载入访客数据中",
+                                align: 'center',
+                                verticalAlign: 'middle',
+                                offsetX: 0,
+                                offsetY: 0
+                            }
+                        };
+
+                        let VisitorChart = new ApexCharts(
+                            document.querySelector("#visitors"),
+                            VisitorChartOptions,
+                        );
+                        VisitorChart.render();
+
+                        let xaxis = {};
+                        let series = [];
+                        xaxis = {
+                            type: 'datetime',
+                            categories: response.data.response.statistics.daily_visitor.key,
+                            labels: {
+                                formatter: function (val) {
+                                    return moment(val).format("M月DD日");
+                                }
+                            }
+                        };
+
+                        series = {
+                            name: "访客人数:",
+                            data: response.data.response.statistics.daily_visitor.value,
+                            labels: {
+                                formatter: function (val) {
+                                    return val;
+                                }
+                            }
+                        };
+
+                        ApexCharts.exec('visitors', "updateOptions", {
+                            xaxis: xaxis
+                        });
+
+                        ApexCharts.exec('visitors', "updateSeries", [
+                            series
+                        ]);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            getOrders() {
+                axios.post(this.url.OrderApiHost, JSON.stringify({
+                        'page': this.page,
+                        'limit': this.perPage,
+                    }),
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                    this.posts = response.data.response.records
+                    this.resp = response.data.response
+
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            handleSubmission(data) {
+                this.results = data
+            },
+            submitHandler() {
+                alert(`Thank you for your order!`)
+            },
+            reset() {
+                this.results = false
+            },
+            login(data) {
+                /* do something with data when it passes validation:
+                 * { email: 'zzz@zzz.com', password: 'xyz' }
+                 */
+                alert('Logged in')
+            },
+            addNewVariant() {
+                this.variants.push({
+                    name: '',
+                    slug: '',
+                    sku: '',
+                    options: [
+                        {
+                            value: '',
+                            add_price: '',
+                            quantity: ''
+                        }
+                    ]
+                })
+            },
+            deleteVariant(id) {
+                this.variants = this.variants.slice(0, id).concat(this.variants.slice(id + 1, this.variants.length))
+            },
+            addNewVariantOption(id) {
+                this.variants[id].options.push({
+                    value: '',
+                    add_price: '',
+                    quantity: '',
+                })
+            },
+            deleteVariantOption(id) {
+                this.variants[id].options = this.variants[id].options.slice(0, id).concat(this.variants[id].options.slice(id + 1, this.variants[id].options.length))
+            },
+            addNewField() {
+                this.fields.push({
+                    name: '',
+                    placeholder: '',
+                    type: 'text',
+                    required: false,
+                })
+            },
+            DeleteField(id) {
+                this.fields = this.fields.slice(0, id).concat(this.fields.slice(id + 1, this.fields.length))
+            },
+        },
+        filters: {
+            human: function (value) {
+                return Time.transform(value);
+            }
+        },
+        computed: {}
+    })
+</script>
+</body>
+</html>
